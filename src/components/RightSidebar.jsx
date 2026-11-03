@@ -1,49 +1,74 @@
 import { useState, useRef, useEffect } from "react";
 
+import RecentChats from "./RecentChats";
 
-const RightSidebar = () => {
-  const [width, setWidth] = useState(260);
+import "../CSS/rightSidebar.css";
+
+
+const RightSidebar = ({detailedChat, setDetailedChat}) => {
+  const [width, setWidth] = useState(350);
   const isResizing = useRef(false);
+  const sidebarRef = useRef(null);
 
-  const handleMouseDown = (e) => {
-    e.preventDefault();
+  const handlePointerDown = (event) => {
+    event.preventDefault();
     isResizing.current = true;
   };
 
+  const resizeBy = (amount) => {
+    setWidth((currentWidth) => Math.min(450, Math.max(200, currentWidth + amount)));
+  };
+
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handlePointerMove = (event) => {
       if (!isResizing.current) return;
 
-      const newWidth = e.clientX;
-
-      if (newWidth >= 180 && newWidth <= 450) {
-        setWidth(newWidth);
-      }
+      const sidebarRight = sidebarRef.current?.getBoundingClientRect().right ?? window.innerWidth;
+      setWidth(Math.min(450, Math.max(200, sidebarRight - event.clientX)));
     };
 
-    const handleMouseUp = () => {
+    const handlePointerUp = () => {
       isResizing.current = false;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerup", handlePointerUp);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerup", handlePointerUp);
     };
   }, []);
 
   return (
     <aside
+      ref={sidebarRef}
       style={{ width: `${width}px` }}
-      className="relative h-screen bg-gray-900 text-white shrink-0 p-5"
+      className="right-bar-heading"
+      aria-label="Right sidebar"
     >
-      <h1 className="text-2xl font-bold mb-10">Kratu</h1>
+      <div className="right-sidebar-brand">
+        <h1>Vartaa</h1>
+      </div>
+
+      <div>
+        <RecentChats detailedChat={detailedChat} setDetailedChat={setDetailedChat}/>
+      </div>
 
       <div
-        onMouseDown={handleMouseDown}
-        className="absolute top-0 right-0 h-full w-1 cursor-col-resize hover:bg-blue-500 active:bg-blue-500"
+        className="right-sidebar-resize-handle"
+        onPointerDown={handlePointerDown}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft") resizeBy(10);
+          if (event.key === "ArrowRight") resizeBy(-10);
+        }}
+        role="separator"
+        aria-label="Resize right sidebar"
+        aria-orientation="vertical"
+        aria-valuemin={200}
+        aria-valuemax={450}
+        aria-valuenow={width}
+        tabIndex={0}
       />
     </aside>
   );

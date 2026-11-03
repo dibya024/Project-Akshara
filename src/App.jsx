@@ -1,16 +1,17 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import HomePage from './components/HomePage'
+import HomePage from "./components/HomePage";
 
-import './App.css'
+import "./App.css";
 
 function App() {
+  const [detailedChat, setDetailedChat] = useState(false);
 
   return (
     <>
-      <HomePage />
+      <HomePage detailedChat={detailedChat} setDetailedChat={setDetailedChat} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

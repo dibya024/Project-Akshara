@@ -1,15 +1,22 @@
 import React from "react";
+
 import SidebarLeft from "./SidebarLeft";
 import RightSidebar from "./RightSidebar";
+import DetailedChat from "./DetailedChat";
 
+import "../CSS/homePage.css";
 
-
-const HomePage = () => {
+const HomePage = ({ detailedChat, setDetailedChat }) => {
   return (
-    <div className="bg-black text-white min-h-screen flex justify-between">
+    <div className="flex h-screen overflow-hidden bg-black text-white justify-between">
       <SidebarLeft />
-      Welcome to kratu
-      <RightSidebar />
+      <main className="flex-1 min-w-0 p-15 overflow-y-auto hide-scrollbar">
+        {detailedChat && <DetailedChat />}
+      </main>
+      <RightSidebar
+        detailedChat={detailedChat}
+        setDetailedChat={setDetailedChat}
+      />
     </div>
   );
 };
