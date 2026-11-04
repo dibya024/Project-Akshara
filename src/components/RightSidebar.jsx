@@ -4,8 +4,7 @@ import RecentChats from "./RecentChats";
 
 import "../CSS/rightSidebar.css";
 
-
-const RightSidebar = ({detailedChat, setDetailedChat}) => {
+const RightSidebar = ({ currentUser, detailedChat, setDetailedChat }) => {
   const [width, setWidth] = useState(350);
   const isResizing = useRef(false);
   const sidebarRef = useRef(null);
@@ -16,14 +15,17 @@ const RightSidebar = ({detailedChat, setDetailedChat}) => {
   };
 
   const resizeBy = (amount) => {
-    setWidth((currentWidth) => Math.min(450, Math.max(200, currentWidth + amount)));
+    setWidth((currentWidth) =>
+      Math.min(450, Math.max(200, currentWidth + amount)),
+    );
   };
 
   useEffect(() => {
     const handlePointerMove = (event) => {
       if (!isResizing.current) return;
 
-      const sidebarRight = sidebarRef.current?.getBoundingClientRect().right ?? window.innerWidth;
+      const sidebarRight =
+        sidebarRef.current?.getBoundingClientRect().right ?? window.innerWidth;
       setWidth(Math.min(450, Math.max(200, sidebarRight - event.clientX)));
     };
 
@@ -52,7 +54,11 @@ const RightSidebar = ({detailedChat, setDetailedChat}) => {
       </div>
 
       <div>
-        <RecentChats detailedChat={detailedChat} setDetailedChat={setDetailedChat}/>
+        <RecentChats
+          currentUser={currentUser}
+          detailedChat={detailedChat}
+          setDetailedChat={setDetailedChat}
+        />
       </div>
 
       <div

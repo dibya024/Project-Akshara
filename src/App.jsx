@@ -5,11 +5,13 @@ import HomePage from "./components/HomePage";
 import "./App.css";
 
 function App() {
-  const [detailedChat, setDetailedChat] = useState(false);
+  const [detailedChat, setDetailedChat] = useState(null);
+
+  const currentUser= new URLSearchParams(window.location.search).get("user") === 'Pradeep' ? 'Pradeep' : 'Dibya';
 
   return (
     <>
-      <HomePage detailedChat={detailedChat} setDetailedChat={setDetailedChat} />
+      <HomePage currentUser= {currentUser} detailedChat={detailedChat} setDetailedChat={setDetailedChat} />
     </>
   );
 }

@@ -2,30 +2,37 @@ import { UserRound } from "lucide-react";
 
 import "../CSS/recentChats.css";
 
-const recentChats = [
-  { label: "Dibya" },
-  { label: "Ranjan" },
-  { label: "Pradeep" },
-  { label: "Madhav" },
-  { label: "Shyam" },
-  { label: "Vasudev" },
-  { label: "Radhanath" },
-  { label: "Narayana" },
-];
+// const recentChats = [
+//   { label: "Sender_One" },
+//   { label: "Receiver_One" },
+//   { label: "Dibya" },
+//   { label: "Pradeep" },
+//   { label: "Ranjan" },
+//   { label: "Sahoo" },
+//   { label: "Dipu" },
+//   { label: "Raj" },
+//   { label: "Dibyaranjan" },
+// ];
 
-const RecentChats = ({detailedChat, setDetailedChat}) => {
+const RecentChats = ({ currentUser, setDetailedChat }) => {
+  const recentChats = ["Dibya", "Pradeep"].filter(
+    (name) => name !== currentUser,
+  );
 
-    const handleDetailChat= (event) => {
-        event.preventDefault();
-        {detailedChat ? setDetailedChat(false) : setDetailedChat(true)};
-    }
+  const handleDetailChat = (name) => {
+    setDetailedChat(name);
+  };
 
   return (
     <section className="recent-chats" aria-label="Recent chats">
       <ul className="recent-chats-list">
-        {recentChats.map((chat) => (
-          <button className="recent-chat transition-transform duration-900 ease-in-out hover:scale-101 " key={chat.label} onClick={handleDetailChat}>
-            <span className="recent-chat-name ">{chat.label}</span>
+        {recentChats.map((name) => (
+          <button
+            className="recent-chat transition-transform duration-900 ease-in-out hover:scale-101 "
+            key={name}
+            onClick={() => handleDetailChat(name)}
+          >
+            <span className="recent-chat-name ">{name}</span>
             <span className="recent-chat-avatar" aria-hidden="true">
               <UserRound size={20} />
             </span>
