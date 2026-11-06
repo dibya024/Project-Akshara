@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { io } from "socket.io-client";
-import { MessageCircle, UserRound, Send } from "lucide-react";
+import { MessageCircle, UserRound, Send, Paperclip } from "lucide-react";
 
 import "../CSS/detailedChat.css";
 
@@ -63,7 +63,7 @@ const DetailedChat = ({ currentUser, contactName }) => {
     }
 
     setError("");
-    socketRef.current.emit("sendMessage", {text});
+    socketRef.current.emit("sendMessage", { text });
     setMessage("");
   };
 
@@ -71,12 +71,12 @@ const DetailedChat = ({ currentUser, contactName }) => {
     <section className="detailed-main" aria-label="Chat conversation">
       <header className="detailed-chat-header">
         <div className="detailed-chat-contact">
-          <h1>{contactName}</h1>
+          <button className="chatName">{contactName}</button>
           <p>{status}</p>
         </div>
-        <span className="detailed-chat-avatar" aria-hidden="true">
+        <button className="detailed-chat-avatar" aria-hidden="true">
           <UserRound size={22} />
-        </span>
+        </button>
       </header>
 
       <div
@@ -105,6 +105,13 @@ const DetailedChat = ({ currentUser, contactName }) => {
       {error && <p role="alert">{error}</p>}
 
       <form className="chat-msg-composer" onSubmit={handleSubmit}>
+        <button
+          className="chat-attach-btn"
+          type="button"
+          aria-label="Attach a file"
+        >
+          <Paperclip size={18} />
+        </button>
         <input
           id="chat-message"
           type="text"
@@ -119,7 +126,7 @@ const DetailedChat = ({ currentUser, contactName }) => {
           type="submit"
           aria-label="Send message"
         >
-          <Send />
+          <Send size={18} />
         </button>
       </form>
     </section>

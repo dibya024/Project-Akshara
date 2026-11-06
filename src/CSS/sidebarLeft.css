@@ -55,7 +55,8 @@
 
 .nav-items:hover,
 .nav-items:focus-visible {
-  border-color: #71717a;
+  border-color: orange;
+  box-shadow: 0 0 10px orange;
   background-color: #3f3f46;
   outline: none;
 }

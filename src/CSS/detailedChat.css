@@ -16,6 +16,7 @@
 .detailed-chat-header {
   box-sizing: border-box;
   display: flex;
+  flex: 0 0 auto;
   min-height: 76px;
   align-items: center;
   justify-content: space-between;
@@ -36,12 +37,23 @@
   border-radius: 50%;
   background-color: #27272a;
   color: #d4d4d8;
+  cursor: pointer;
 }
 
-.detailed-chat-contact h1 {
+.detailed-chat-avatar:hover{
+  border-color: orange;
+  box-shadow: 0 0 25px 0 orange;
+}
+
+.chatName {
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.chatName:hover{
+font-weight: 700;
 }
 
 .detailed-chat-contact p {
@@ -122,8 +134,10 @@
 .chat-msg-composer {
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  flex: 0 0 auto;
+  gap: 12px;
+  width: 100%;
   padding: 14px 18px;
   border-top: 1px solid #3f3f46;
   background-color: #1c1c1f;
@@ -131,9 +145,10 @@
 
 .chat-msg-input {
   box-sizing: border-box;
-  width: 90%;
+  flex: 1 1 auto;
+  width: 0;
   min-width: 0;
-  min-height: 46px;
+  min-height: 40px;
   padding: 0 14px;
   border: 1px solid #52525b;
   border-radius: 12px;
@@ -153,18 +168,41 @@
 }
 
 .msg-send-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 6%;
-  height: 95%;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border: 0;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #404045ad;
+  background-color: rgb(15, 171, 15);
+  color: white;
 }
 
 .msg-send-btn:hover {
-  background-color: green;
+  background-color: black;
+  color: rgb(75, 232, 75);
+  box-shadow: 0 0 20px 0 rgb(86, 214, 86);
+}
+
+.chat-attach-btn {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border: 1px solid #52525b;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgb(8, 216, 216);
+  color: black;
+}
+
+.chat-attach-btn:hover {
+  background-color: #3f3f46;
+  color: white;
+  box-shadow: 0 0 10px 0 aqua;
 }
 
 .visually-hidden {
