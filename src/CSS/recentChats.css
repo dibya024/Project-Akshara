@@ -70,7 +70,8 @@
   z-index: 10;
   display: grid;
   place-items: center;
-  background: rgb(0 0 0 / 65%);
+  background: rgba(0, 0, 0, 0.766);
+  backdrop-filter: blur(5px);
 }
 
 .profile-popup {
@@ -78,16 +79,33 @@
   display: grid;
   justify-items: center;
   gap: 12px;
-  min-width: 220px;
-  padding: 28px;
+  min-width: 300px;
+  min-height: 300px;
+  padding: 10px 14px 30px;
   border: 1px solid #52525b;
   border-radius: 12px;
-  background: #18181b;
+  background: black;
   color: #f4f4f5;
+  align-content: start;
 }
 
-.profile-popup h2 {
+.profile-popup-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-popup-title {
   margin: 0;
+  font-size: large;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-popup-title:hover{
+  color: orange;
+  font-weight: 700;
 }
 
 .profile-popup-close {
@@ -100,10 +118,25 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
+  position: static;
+}
+
+.profile-popup-close:hover {
+  background-color: #52525b;
+  border-radius: 5px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .recent-chat {
     transition: none;
   }
+}
+
+.profile-contact-details {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }

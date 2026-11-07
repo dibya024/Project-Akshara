@@ -72,16 +72,22 @@ const RecentChats = ({ currentUser, setDetailedChat }) => {
             aria-labelledby="profile-popup-title"
             onClick={(event) => event.stopPropagation()}
           >
-            <button
-              className="profile-popup-close"
-              type="button"
-              aria-label="Close Profile"
-              onClick={() => setProfileInfo(null)}
-            >
-              <X size={20}></X>
-            </button>
-            <UserRound size={35} aria-hidden="true" />
-            <h2 id="profile-popup-title">{profileInfo}</h2>
+            <div className="profile-popup-header">
+              <h2 className="profile-popup-title">{profileInfo}</h2>
+              <button
+                className="profile-popup-close"
+                type="button"
+                aria-label="Close Profile"
+                onClick={() => setProfileInfo(null)}
+              >
+                <X size={20}></X>
+              </button>
+            </div>
+            <UserRound size={65} aria-hidden="true" className="mt-10"/>
+            <div className="profile-contact-details">
+              <span className="phone-number cursor-pointer hover:underline hover:text-cyan-500">1234567890</span>
+              <span className="email_id cursor-pointer hover:underline hover:text-purple-400">abc@email.xyz</span>
+            </div>
           </section>
         </div>
       )}

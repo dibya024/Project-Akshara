@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect } from "react";
+import { X } from "lucide-react";
 import { io } from "socket.io-client";
-import { MessageCircle, UserRound, Send, Paperclip } from "lucide-react";
+import {
+  MessageCircle,
+  UserRound,
+  Send,
+  Paperclip,
+  EllipsisVertical,
+} from "lucide-react";
 
 import "../CSS/detailedChat.css";
 
@@ -9,6 +16,8 @@ const DetailedChat = ({ currentUser, contactName }) => {
   const [messages, setMessages] = useState([]);
   const [status, setStatus] = useState("Connecting...");
   const [error, setError] = useState("");
+
+  const [profileInfo, setProfileInfo] = useState(null);
 
   const socketRef = useRef(null);
 
@@ -67,14 +76,30 @@ const DetailedChat = ({ currentUser, contactName }) => {
     setMessage("");
   };
 
+  const handleAvatarInfo = (name) => {
+    setProfileInfo(name);
+  };
+
+  const handleMoreSettings = () => {}
+
   return (
     <section className="detailed-main" aria-label="Chat conversation">
       <header className="detailed-chat-header">
+        <button className="more-settings" onClick={handleMoreSettings}>
+          <EllipsisVertical />
+        </button>
         <div className="detailed-chat-contact">
           <button className="chatName">{contactName}</button>
-          <p>{status}</p>
+          {/* <p>{status}</p> */}
         </div>
-        <button className="detailed-chat-avatar" aria-hidden="true">
+        <button
+          className="detailed-chat-avatar"
+          aria-hidden="true"
+          onClick={(event) => {
+            // event.stopPropagation();
+            handleAvatarInfo(currentUser);
+          }}
+        >
           <UserRound size={22} />
         </button>
       </header>
@@ -129,6 +154,43 @@ const DetailedChat = ({ currentUser, contactName }) => {
           <Send size={18} />
         </button>
       </form>
+      {profileInfo && (
+        <div
+          className="detailed-profile-popup-backdrop"
+          onClick={() => setProfileInfo(null)}
+        >
+          <section
+            className="detailed-profile-popup"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="profile-popup-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="detailed-profile-popup-header">
+              <h2 className="detailed-profile-popup-title">Profile Details</h2>
+              <button
+                className="profile-popup-close"
+                type="button"
+                aria-label="Close Profile"
+                onClick={() => setProfileInfo(null)}
+              >
+                <X size={20}></X>
+              </button>
+            </div>
+            <div className="profile-picture">
+              <UserRound size={65} aria-hidden="true" />
+            </div>
+            <div className="detailed-profile-contact-details">
+              <span className="detailed-phone-number cursor-pointer hover:underline hover:text-cyan-500">
+                1234567890
+              </span>
+              <span className="detailed-email_id cursor-pointer hover:underline hover:text-purple-400">
+                abc@email.xyz
+              </span>
+            </div>
+          </section>
+        </div>
+      )}
     </section>
   );
 };
