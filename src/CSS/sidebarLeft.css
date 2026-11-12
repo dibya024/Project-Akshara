@@ -96,6 +96,7 @@
 }
 
 .leftbar-bottom:hover {
+  cursor: pointer;
   border-color: #71717a;
   background-color: rgba(77, 93, 108, 0.788);
 }

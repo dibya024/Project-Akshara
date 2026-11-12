@@ -41,6 +41,7 @@ const RightSidebar = ({ currentUser, detailedChat, setDetailedChat }) => {
       window.removeEventListener("pointerup", handlePointerUp);
     };
   }, []);
+  
 
   return (
     <aside

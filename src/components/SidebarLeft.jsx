@@ -1,8 +1,14 @@
 import { useState, useRef, useEffect } from "react";
-import { Home, Settings, UserRound, Users, File, MessageCircle } from "lucide-react";
+import {
+  Home,
+  Settings,
+  UserRound,
+  Users,
+  File,
+  MessageCircle,
+} from "lucide-react";
 
 import "../CSS/sidebarLeft.css";
-import kratu_logo from "../images/kratu-logo.png";
 
 const navItems = [
   { icon: Home, label: "Home", href: "#" },
@@ -12,7 +18,12 @@ const navItems = [
   { icon: Settings, label: "Settings", href: "#settings" },
 ];
 
-const SidebarLeft = () => {
+const SidebarLeft = ({
+  myProfile,
+  setMyProfile,
+  leftBarItems,
+  setLeftBarItems,
+}) => {
   const [width, setWidth] = useState(260);
   const isResizing = useRef(false);
   const sidebarRef = useRef(null);
@@ -22,8 +33,16 @@ const SidebarLeft = () => {
     isResizing.current = true;
   };
 
+  const handleMyProfile = () => {
+    setMyProfile(true);
+  };
+
+  const handleLeftBarItemChange =() => {}
+
   const resizeBy = (amount) => {
-    setWidth((currentWidth) => Math.min(360, Math.max(160, currentWidth + amount)));
+    setWidth((currentWidth) =>
+      Math.min(360, Math.max(160, currentWidth + amount)),
+    );
   };
 
   useEffect(() => {
@@ -61,15 +80,16 @@ const SidebarLeft = () => {
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
-            <a
+            <button
               className="nav-items"
               style={{ width: `${width - 30}px` }}
               key={item.label}
               href={item.href}
+              onClick={handleLeftBarItemChange}
             >
               <Icon size={24} aria-hidden="true" />
               <span>{item.label}</span>
-            </a>
+            </button>
           );
         })}
       </nav>
@@ -90,10 +110,10 @@ const SidebarLeft = () => {
         tabIndex={0}
       />
 
-      <div className="leftbar-bottom">
+      <button className="leftbar-bottom" onClick={handleMyProfile}>
         <UserRound size={25} aria-hidden="true" />
         <span>Dibyaranjan</span>
-      </div>
+      </button>
     </aside>
   );
 };
