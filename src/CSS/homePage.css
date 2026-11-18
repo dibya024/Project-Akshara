@@ -6,3 +6,65 @@
 .hide-scrollbar::-webkit-scrollbar{
     display: none;
 }
+
+.home-mode-button {
+    display: inline-flex;
+    min-width: 6rem;
+    min-height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    color: #18181b;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 150ms ease,
+        border-color 150ms ease,
+        box-shadow 150ms ease,
+        transform 150ms ease;
+}
+
+.home-mode-button:hover {
+    transform: translateY(-1px);
+}
+
+.home-mode-button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.home-mode-button-private {
+    border-color: rgba(253, 186, 116, 0.6);
+    background: #fdba74;
+}
+
+.home-mode-button-private:hover {
+    border-color: #fed7aa;
+    background: #fb923c;
+    box-shadow: 0 4px 14px rgba(251, 146, 60, 0.2);
+}
+
+.home-mode-button-social {
+    border-color: rgba(103, 232, 249, 0.6);
+    background: #67e8f9;
+}
+
+.home-mode-button-social:hover {
+    border-color: #a5f3fc;
+    background: #22d3ee;
+    box-shadow: 0 4px 14px rgba(34, 211, 238, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-mode-button {
+        transition: none;
+    }
+
+    .home-mode-button:hover {
+        transform: none;
+    }
+}

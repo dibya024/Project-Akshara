@@ -9,10 +9,13 @@ function App() {
   const [leftBarItems, setLeftBarItems] = useState(null);
   const [myProfile, setMyProfile] = useState(false);
 
-  const currentUser =
-    new URLSearchParams(window.location.search).get("user") === "Pradeep"
-      ? "Pradeep"
-      : "Dibya";
+  // const currentUser =
+  //   new URLSearchParams(window.location.search).get("user") === "Pradeep"
+  //     ? "Pradeep"
+  //     : "Dibya";
+  const currentUser= "Pradeep";
+
+  const isLoggedin= true;
 
   return (
     <>

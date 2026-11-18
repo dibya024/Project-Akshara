@@ -171,12 +171,12 @@
   font-size: 0.9rem;
 }
 
-.chat-msg-input::placeholder {
-  color: #a1a1aa;
-}
-
-.chat-msg-input:focus {
-  border-color: #a1a1aa;
+.chat-msg-input:-webkit-autofill,
+.chat-msg-input:-webkit-autofill:hover,
+.chat-msg-input:-webkit-autofill:focus,
+.chat-msg-input:-webkit-autofill:active {
+  -webkit-text-fill-color: #f4f4f5;
+  -webkit-box-shadow: 0 0 0 1000px #171717 inset;
 }
 
 .msg-send-btn {

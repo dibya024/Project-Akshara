@@ -11,11 +11,11 @@ import {
 import "../CSS/sidebarLeft.css";
 
 const navItems = [
-  { icon: Home, label: "Home", href: "#" },
-  { icon: Users, label: "Contacts", href: "#contact" },
-  { icon: MessageCircle, label: "Chats", href: "#chats" },
-  { icon: File, label: "Media & Files", href: "#mediaFiles" },
-  { icon: Settings, label: "Settings", href: "#settings" },
+  { icon: Home, label: "Home" },
+  { icon: Users, label: "All Contacts" },
+  { icon: MessageCircle, label: "Chats" },
+  { icon: File, label: "Media & Files" },
+  { icon: Settings, label: "Settings" },
 ];
 
 const SidebarLeft = ({
@@ -37,7 +37,9 @@ const SidebarLeft = ({
     setMyProfile(true);
   };
 
-  const handleLeftBarItemChange =() => {}
+  const handleLeftBarItemChange = (item) => {
+    setLeftBarItems(item);
+  };
 
   const resizeBy = (amount) => {
     setWidth((currentWidth) =>
@@ -73,7 +75,6 @@ const SidebarLeft = ({
       className="left-bar-heading"
     >
       <div className="sidebar-brand">
-        {/* <img src={kratu_logo} className="logo-img" alt="" /> */}
         <h1>Akshara</h1>
       </div>
       <nav className="sidebar-navigation" aria-label="Main navigation">
@@ -81,11 +82,11 @@ const SidebarLeft = ({
           const Icon = item.icon;
           return (
             <button
-              className="nav-items"
+              className={`nav-items ${leftBarItems === item.label ? "active" : ""}`}
               style={{ width: `${width - 30}px` }}
               key={item.label}
               href={item.href}
-              onClick={handleLeftBarItemChange}
+              onClick={() => handleLeftBarItemChange(item.label)}
             >
               <Icon size={24} aria-hidden="true" />
               <span>{item.label}</span>

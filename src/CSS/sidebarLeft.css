@@ -51,6 +51,11 @@
   border-radius: 10px;
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-items.active{
+  background-color: #333333;
 }
 
 .nav-items:hover,

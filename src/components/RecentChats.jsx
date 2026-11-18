@@ -4,24 +4,24 @@ import { UserRound, X } from "lucide-react";
 
 import "../CSS/recentChats.css";
 
-// const recentChats = [
-//   { label: "Sender_One" },
-//   { label: "Receiver_One" },
-//   { label: "Dibya" },
-//   { label: "Pradeep" },
-//   { label: "Ranjan" },
-//   { label: "Sahoo" },
-//   { label: "Dipu" },
-//   { label: "Raj" },
-//   { label: "Dibyaranjan" },
-// ];
+const recentChats = [
+  { label: "Sender_One" },
+  { label: "Receiver_One" },
+  { label: "Dibya" },
+  { label: "Pradeep" },
+  { label: "Ranjan" },
+  { label: "Sahoo" },
+  { label: "Dipu" },
+  { label: "Raj" },
+  { label: "Dibyaranjan" },
+];
 
-const RecentChats = ({ currentUser, setDetailedChat }) => {
+const RecentChats = ({ currentUser, detailedChat, setDetailedChat }) => {
   const [profileInfo, setProfileInfo] = useState(null);
 
-  const recentChats = ["Dibya", "Pradeep"].filter(
-    (name) => name !== currentUser,
-  );
+  // const recentChats = ["Dibya", "Pradeep"].filter(
+  //   (name) => name !== currentUser,
+  // );
 
   const handleDetailChat = (name) => {
     setDetailedChat(name);
@@ -34,9 +34,10 @@ const RecentChats = ({ currentUser, setDetailedChat }) => {
   return (
     <section className="recent-chats" aria-label="Recent chats">
       <ul className="recent-chats-list">
-        {recentChats.map((name) => (
+        
+        {/* {recentChats.map((name) => (
           <li
-            className="recent-chat"
+            className={`recent-chat ${detailedChat === name ? "active" : ""}`}
             key={name}
             onClick={() => handleDetailChat(name)}
           >
@@ -58,8 +59,37 @@ const RecentChats = ({ currentUser, setDetailedChat }) => {
               <UserRound size={20} />
             </button>
           </li>
-        ))}
+        ))} */}
+
+        {recentChats
+          .filter(({ label }) => label !== currentUser)
+          .map(({ label }) => (
+            <li
+              className={`recent-chat ${detailedChat === label ? "active" : ""}`}
+              key={label}
+              onClick={() => handleDetailChat(label)}
+            >
+              <button
+                className="recent-chat-open transition-transform duration-900 ease-in-out hover:scale-101 "
+                type="button"
+              >
+                <span className="recent-chat-name ">{label}</span>
+              </button>
+              <button
+                className="recent-chat-avatar"
+                type="button"
+                aria-label={`View ${label}'s profile`}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  handleAvatarInfo(label);
+                }}
+              >
+                <UserRound size={20} />
+              </button>
+            </li>
+          ))}
       </ul>
+
       {profileInfo && (
         <div
           className="profile-popup-backdrop"
@@ -83,10 +113,14 @@ const RecentChats = ({ currentUser, setDetailedChat }) => {
                 <X size={20}></X>
               </button>
             </div>
-            <UserRound size={65} aria-hidden="true" className="mt-10"/>
+            <UserRound size={65} aria-hidden="true" className="mt-10" />
             <div className="profile-contact-details">
-              <span className="phone-number cursor-pointer hover:underline hover:text-cyan-500">1234567890</span>
-              <span className="email_id cursor-pointer hover:underline hover:text-purple-400">abc@email.xyz</span>
+              <span className="phone-number cursor-pointer hover:underline hover:text-cyan-500">
+                1234567890
+              </span>
+              <span className="email_id cursor-pointer hover:underline hover:text-purple-400">
+                abc@email.xyz
+              </span>
             </div>
           </section>
         </div>

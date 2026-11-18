@@ -80,7 +80,7 @@ const DetailedChat = ({ currentUser, contactName }) => {
     setProfileInfo(name);
   };
 
-  const handleMoreSettings = () => {}
+  const handleMoreSettings = () => {};
 
   return (
     <section className="detailed-main" aria-label="Chat conversation">
@@ -154,6 +154,7 @@ const DetailedChat = ({ currentUser, contactName }) => {
           <Send size={18} />
         </button>
       </form>
+      
       {profileInfo && (
         <div
           className="detailed-profile-popup-backdrop"
