@@ -18,11 +18,19 @@ const navItems = [
   { icon: Settings, label: "Settings" },
 ];
 
+const socialNavItems = [
+  { icon: Home, label: "Home" },
+  { icon: File, label: "Media & Files" },
+  { icon: Settings, label: "Settings" },
+];
+
 const SidebarLeft = ({
   myProfile,
   setMyProfile,
   leftBarItems,
   setLeftBarItems,
+  mediaMode,
+  setMediaMode,
 }) => {
   const [width, setWidth] = useState(260);
   const isResizing = useRef(false);
@@ -78,22 +86,40 @@ const SidebarLeft = ({
         <h1>Akshara</h1>
       </div>
       <nav className="sidebar-navigation" aria-label="Main navigation">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          return (
-            <button
-              className={`nav-items ${leftBarItems === item.label ? "active" : ""}`}
-              style={{ width: `${width - 30}px` }}
-              key={item.label}
-              href={item.href}
-              onClick={() => handleLeftBarItemChange(item.label)}
-            >
-              <Icon size={24} aria-hidden="true" />
-              <span>{item.label}</span>
-            </button>
-          );
-        })}
+        {mediaMode ?
+          navItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <button
+                className={`nav-items ${leftBarItems === item.label ? "active" : ""}`}
+                style={{ width: `${width - 30}px` }}
+                key={item.label}
+                href={item.href}
+                onClick={() => handleLeftBarItemChange(item.label)}
+              >
+                <Icon size={24} aria-hidden="true" />
+                <span>{item.label}</span>
+              </button>
+            );
+          }) : 
+          socialNavItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <button
+                className={`nav-items ${leftBarItems === item.label ? "active" : ""}`}
+                style={{ width: `${width - 30}px` }}
+                key={item.label}
+                href={item.href}
+                onClick={() => handleLeftBarItemChange(item.label)}
+              >
+                <Icon size={24} aria-hidden="true" />
+                <span>{item.label}</span>
+              </button>
+            );
+          })
+        }
       </nav>
+      
 
       <div
         className="sidebar-resize-handle"

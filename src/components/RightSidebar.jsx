@@ -4,7 +4,13 @@ import RecentChats from "./RecentChats";
 
 import "../CSS/rightSidebar.css";
 
-const RightSidebar = ({ currentUser, detailedChat, setDetailedChat }) => {
+const RightSidebar = ({
+  currentUser,
+  detailedChat,
+  setDetailedChat,
+  mediaMode,
+  setMediaMode,
+}) => {
   const [width, setWidth] = useState(350);
   const isResizing = useRef(false);
   const sidebarRef = useRef(null);
@@ -41,7 +47,6 @@ const RightSidebar = ({ currentUser, detailedChat, setDetailedChat }) => {
       window.removeEventListener("pointerup", handlePointerUp);
     };
   }, []);
-  
 
   return (
     <aside
@@ -59,6 +64,8 @@ const RightSidebar = ({ currentUser, detailedChat, setDetailedChat }) => {
           currentUser={currentUser}
           detailedChat={detailedChat}
           setDetailedChat={setDetailedChat}
+          mediaMode= {mediaMode}
+          setMediaMode= {setMediaMode}
         />
       </div>
 

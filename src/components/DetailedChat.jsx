@@ -11,7 +11,12 @@ import {
 
 import "../CSS/detailedChat.css";
 
-const DetailedChat = ({ currentUser, contactName }) => {
+const DetailedChat = ({
+  currentUser,
+  contactName,
+  mediaMode,
+  setMediaMode,
+}) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [status, setStatus] = useState("Connecting...");
@@ -154,7 +159,7 @@ const DetailedChat = ({ currentUser, contactName }) => {
           <Send size={18} />
         </button>
       </form>
-      
+
       {profileInfo && (
         <div
           className="detailed-profile-popup-backdrop"

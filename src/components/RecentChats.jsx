@@ -13,10 +13,16 @@ const recentChats = [
   { label: "Sahoo" },
   { label: "Dipu" },
   { label: "Raj" },
-  { label: "Dibyaranjan" },
+  { label: "Dibyaranjan " },
 ];
 
-const RecentChats = ({ currentUser, detailedChat, setDetailedChat }) => {
+const RecentChats = ({
+  currentUser,
+  detailedChat,
+  setDetailedChat,
+  mediaMode,
+  setMediaMode,
+}) => {
   const [profileInfo, setProfileInfo] = useState(null);
 
   // const recentChats = ["Dibya", "Pradeep"].filter(
@@ -24,6 +30,9 @@ const RecentChats = ({ currentUser, detailedChat, setDetailedChat }) => {
   // );
 
   const handleDetailChat = (name) => {
+    if (!mediaMode){
+      setMediaMode(true);
+    }
     setDetailedChat(name);
   };
 
@@ -34,7 +43,6 @@ const RecentChats = ({ currentUser, detailedChat, setDetailedChat }) => {
   return (
     <section className="recent-chats" aria-label="Recent chats">
       <ul className="recent-chats-list">
-        
         {/* {recentChats.map((name) => (
           <li
             className={`recent-chat ${detailedChat === name ? "active" : ""}`}
